@@ -1,11 +1,11 @@
 # Lightshifts
 
-Calculate dynamical scalar, vector and tensor lightshifts for atomic states
+Calculate dynamical scalar, vector and tensor light shifts for atomic states
 in the presence of hyperfine coupling.
 
 ## Module ```lightshifts.lightshift_solver```
 
-Solves for the scalar, vector and tensor lightshifts induced by the provided transitions and states.
+Solves for the scalar, vector and tensor light shifts induced by the provided transitions and states.
 
 
 ## Installation

@@ -32,7 +32,7 @@ setup(
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
 
-    description='Calculate dynamical scalar, vector and tensor lightshifts.',
+    description='Calculate dynamical scalar, vector and tensor light shifts.',
     long_description=long_description,
 
     # The project's main homepage.
