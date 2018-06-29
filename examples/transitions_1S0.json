@@ -1,0 +1,62 @@
+[
+    {
+        "state_i": [
+            "6s6s",
+            "1S0"
+        ],
+        "state_f": [
+            "6s6p",
+            "1P1"
+        ],
+        "Gamma": 183016105.4172767,
+        "_ref_Gamma": "Blagoev-1994"
+    },
+    {
+        "state_i": [
+            "6s6s",
+            "1S0"
+        ],
+        "state_f": [
+            "6s6p",
+            "3P1"
+        ],
+        "Gamma": 1154601.0853250204,
+        "_ref_Gamma": "Blagoev-1994"
+    },
+    {
+        "state_i": [
+            "6s6s",
+            "1S0"
+        ],
+        "state_f": [
+            "?",
+            "(7/2,5/2)J=1"
+        ],
+        "Gamma": 69444444.44444445,
+        "_ref_Gamma": "Blagoev-1994"
+    },
+    {
+        "state_i": [
+            "6s6s",
+            "1S0"
+        ],
+        "state_f": [
+            "6s7p",
+            "1P1"
+        ],
+        "Gamma": 111957202.56462649,
+        "_ref_Gamma": "Blagoev-1994 and LS branching ratio"
+    },
+    {
+        "state_i": [
+            "6s6s",
+            "1S0"
+        ],
+        "state_f": [
+            "6s8p",
+            "1P1"
+        ],
+        "Gamma": 25304751.46474052,
+        "_ref_Gamma": "Blagoev-1994 and LS branching ratio"
+    }
+]

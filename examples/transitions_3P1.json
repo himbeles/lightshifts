@@ -1,0 +1,110 @@
+[
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s6s",
+            "1S0"
+        ],
+        "Gamma": 1154601.0853250204,
+        "_ref_Gamma": "Blagoyev-1994"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s5d",
+            "3D1"
+        ],
+        "Gamma": 1068667.3022298708,
+        "_ref_Gamma": "Beloy-2012 and LS branching ratio"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s5d",
+            "3D2"
+        ],
+        "Gamma": 1757044.06994768,
+        "_ref_Gamma": "Cho-2012"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s7s",
+            "3S1"
+        ],
+        "Gamma": 24844772.498019677,
+        "_ref_Gamma": "Baumann-1985"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s6d",
+            "3D1"
+        ],
+        "Gamma": 17483094.804841775,
+        "_ref_Gamma": "Baumann-1985"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s6d",
+            "3D2"
+        ],
+        "Gamma": 32764038.799394544,
+        "_ref_Gamma": "Baumann-1985"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s8s",
+            "3S1"
+        ],
+        "Gamma": 10795506.251882186,
+        "_ref_Gamma": "Baumann-1985"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s7d",
+            "3D1"
+        ],
+        "Gamma": 10298970.701058172,
+        "_ref_Gamma": "Baumann-1985"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P1"
+        ],
+        "state_f": [
+            "6s7d",
+            "3D2"
+        ],
+        "Gamma": 11671529.099294838,
+        "_ref_Gamma": "Baumann-1985"
+    }
+]

@@ -1,0 +1,74 @@
+[
+    {
+        "state_i": [
+            "6s6p",
+            "3P0"
+        ],
+        "state_f": [
+            "6s5d",
+            "3D1"
+        ],
+        "Gamma": 1939729.0265234069,
+        "_ref_Gamma": "Beloy-2012 and LS branching ratio"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P0"
+        ],
+        "state_f": [
+            "6s7s",
+            "3S1"
+        ],
+        "Gamma": 9528288.272536002,
+        "_ref_Gamma": "Baumann-1985 and LS branching ratio"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P0"
+        ],
+        "state_f": [
+            "6s6d",
+            "3D1"
+        ],
+        "Gamma": 25639556.532560784,
+        "_ref_Gamma": "Baumann-1985 and LS branching ratio"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P0"
+        ],
+        "state_f": [
+            "6s8s",
+            "3S1"
+        ],
+        "Gamma": 3929697.1742831324,
+        "_ref_Gamma": "Baumann-1985 and LS branching ratio"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P0"
+        ],
+        "state_f": [
+            "6s7d",
+            "3D1"
+        ],
+        "Gamma": 14862907.721301004,
+        "_ref_Gamma": "Baumann-1985 and LS branching ratio"
+    },
+    {
+        "state_i": [
+            "6s6p",
+            "3P0"
+        ],
+        "state_f": [
+            "6p6p",
+            "3P1"
+        ],
+        "Gamma": 25094677.66083625,
+        "_ref_Gamma": "Baumann-1985 and LS branching ratio"
+    }
+]

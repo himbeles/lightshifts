@@ -1,0 +1,24 @@
+.DS_Store
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*.synctex.gz
+*.bak
+.ipynb
+*.pyc
+*.ipynb_checkpoints
+
+*.egg-info
+*.egg
+*.eggs
+build
+dist
+doc/_build
+.idea
+
+# py.test
+.cache
+.coverage
+htmlcov
