@@ -5,14 +5,31 @@ from sympy.physics.wigner import wigner_6j
 
 
 class lightshift_solver():
-    def __init__(self, atom_filename, transitions_filename):
-        self.atom, self.transitions = self.import_states_and_transitions(atom_filename, transitions_filename)
+    def __init__(self, atom_filename, transitions_filename, Fi=None):
+        """
+        Calculate dynamical scalar, vector and tensor light shifts
+        for atomic states in the presence of hyperfine coupling.
+
+        Atom states and transitions json files need to be provided, see
+        README.md.
+
+        Arguments:
+            atom_filename (str): path to atom states json file
+            transitions_filename (str): path to transitions json file
+
+        Returns:
+            lightshift_solver: obect wrapping lightshift solver methods
+        """
+        self.atom, self.transitions = self._import_states_and_transitions(atom_filename, transitions_filename)
         self.states = self.atom['states']
         self.I = self.atom['I']
-        self.Fi = self.I
+        if Fi is None:
+            self.Fi = self.I
+        else:
+            self.Fi = Fi
         self.state_i = self.transitions[0]['state_i']
 
-    def import_states_and_transitions(self, atom_filename, transitions_filename):
+    def _import_states_and_transitions(self, atom_filename, transitions_filename):
         try:
             atom = self._import_json(atom_filename)
         except:
@@ -111,6 +128,15 @@ class lightshift_solver():
                 raise Exception('State (%s, %s) has no J provided.'%(config,term))
 
     def scalar_polarizability(self, lam):
+        """
+        Calculate scalar polarizability in SI units for initial state (self.state_i) for
+        light with a given wavelength lam in nm.
+
+        Arguments:
+            lam (float): wavelength in nm
+        Returns:
+            float: scalar polarizability in SI units
+        """
         omega = 2*np.pi*c/lam
 
         p = 0
@@ -178,7 +204,14 @@ class lightshift_solver():
 
     def polarizabilities(self, lam):
         """
-        Scalar, vector and tensor polarizability in SI units
+        Calculate scalar, vector and tensor polarizability in SI units
+        for initial state (self.state_i) for
+        light with a given wavelength lam in nm.
+
+        Arguments:
+            lam (float): wavelength in nm
+        Returns:
+            (float,float,float) tuple: scalar, vector, tensor polarizability in SI units
         """
         omega = 2*np.pi*c/lam
         Fi = self.Fi
@@ -208,7 +241,17 @@ class lightshift_solver():
 
     def lightshifts(self, lam, q, mFi, laser_intensity=1.):
         """
-        scalar, vector and tensor lightshift in Hz for lambda in nm and laser_intensity in W/cm^2
+        Calculate scalar, vector and tensor light shift in Hz
+        for initial state (self.state_i) with m_F = mFi for
+        light with a given wavelength lam in nm and polarization q.
+
+        Arguments:
+            lam (float): wavelength in nm
+            q (int): -1,0,1 for sigma-, pi, sigma+ polarization
+            mFi: m_F component of the light shifted state
+            laser_intensity (float): light intensity in W/cm^2
+        Returns:
+            (float,float,float) tuple: scalar, vector, tensor light shift in Hz
         """
         laser_intensity_unit = 1/(0.01)**2  # normalization Watt/cm^2
 
@@ -226,8 +269,17 @@ class lightshift_solver():
 
     def total_lightshift(self, lam, q, mFi, laser_intensity=1.):
         """
-        Summed scalar, vector and tensor lightshift in Hz
-        for lambda in nm and laser_intensity in W/cm^2
+        Calculate total scalar, vector and tensor light shift (summed) in Hz
+        for initial state (self.state_i) with m_F = mFi for
+        light with a given wavelength lam in nm and polarization q.
+
+        Arguments:
+            lam (float): wavelength in nm
+            q (int): -1,0,1 for sigma-, pi, sigma+ polarization
+            mFi: m_F component of the light shifted state
+            laser_intensity (float): light intensity in W/cm^2
+        Returns:
+            float: total light shift (scalar, vector, tensor summed) in Hz
         """
         l0,l1,l2 = self.lightshifts(lam, q, mFi, laser_intensity=laser_intensity)
         return l0+l1+l2
