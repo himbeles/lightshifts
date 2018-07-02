@@ -122,3 +122,5 @@ are provided in the form of two json files:
         }
     ]
     ````
+
+An example for how the state and transition files were generated for ytterbium-173 can be found in [```examples/example_transition_collection_yb173.ipynb```](examples/example_transition_collection_yb173.ipynb).
