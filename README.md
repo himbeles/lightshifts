@@ -161,3 +161,5 @@ yb.branching_ratio_LS(state_i, state_f)
 
 # Out[]: 0.6387527684341578
 ```
+
+An example of how the transition rates were calculated for ytterbium-173 can be found in [```examples/example_transition_collection_yb173.ipynb```](examples/example_transition_collection_yb173.ipynb).
