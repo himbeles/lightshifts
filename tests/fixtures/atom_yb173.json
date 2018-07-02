@@ -1,0 +1,151 @@
+{
+    "name": "yb173",
+    "I": 2.5,
+    "states": {
+        "6s6s": {
+            "1S0": {
+                "frequency": 0,
+                "hyper_A": 0,
+                "hyper_B": 0
+            }
+        },
+        "6s6p": {
+            "3P0": {
+                "frequency": 518294362279306.1,
+                "_ref_frequency": "NIST",
+                "hyper_A": 0,
+                "hyper_B": 0
+            },
+            "3P1": {
+                "frequency": 539386800288320.6,
+                "_ref_frequency": "NIST",
+                "hyper_A": -1094328000.0,
+                "hyper_B": -826635000.0,
+                "_ref_hyper": "Pandey et al., PRA 80, 022518 (2009)"
+            },
+            "3P2": {
+                "frequency": 590902566665370.4,
+                "_ref_frequency": "NIST",
+                "hyper_A": -742710000.0,
+                "hyper_B": 1342300000.0,
+                "_ref_hyper": "Yamaguchi Thesis 2008"
+            },
+            "1P1": {
+                "frequency": 751526389106967.6,
+                "_ref_frequency": "NIST",
+                "hyper_A": 57682000.0,
+                "hyper_B": 609065000.0,
+                "_ref_hyper": "Das et al, Phys. Rev. A, 72:032506 (2015)"
+            }
+        },
+        "6s5d": {
+            "3D1": {
+                "frequency": 734164808279271.6,
+                "_ref_frequency": "NIST",
+                "hyper_A": 563000000.0,
+                "hyper_B": 335000000.0,
+                "_ref_hyper": "Porsev JPB: At. Mol. Opt. Phys. 32 (1999)"
+            },
+            "3D2": {
+                "frequency": 742044733120818.5,
+                "_ref_frequency": "NIST"
+            }
+        },
+        "?": {
+            "(7/2,5/2)J=1": {
+                "frequency": 865111515760041.2,
+                "J": 1,
+                "_ref_frequency": "NIST"
+            }
+        },
+        "6s7s": {
+            "3S1": {
+                "frequency": 980162207823293.5,
+                "_ref_frequency": "NIST",
+                "hyper_A": -1892000000.0,
+                "hyper_B": -200000.0,
+                "_ref_hyper": "Yamaguchi Thesis 2008"
+            },
+            "1S0": {
+                "frequency": 1029806579739770.1,
+                "_ref_frequency": "NIST",
+                "hyper_A": 0,
+                "hyper_B": 0
+            }
+        },
+        "6s6d": {
+            "3D1": {
+                "frequency": 1193435401863376.0,
+                "_ref_frequency": "NIST"
+            },
+            "3D2": {
+                "frequency": 1194314393350232.0,
+                "_ref_frequency": "NIST"
+            }
+        },
+        "6s7p": {
+            "3P0": {
+                "frequency": 1141930757786518.0,
+                "_ref_frequency": "NIST",
+                "hyper_A": 0,
+                "hyper_B": 0
+            },
+            "3P1": {
+                "frequency": 1144432825640986.0,
+                "_ref_frequency": "NIST"
+            },
+            "3P2": {
+                "frequency": 1155757785534394.0,
+                "_ref_frequency": "NIST"
+            },
+            "1P1": {
+                "frequency": 1216077227253826.0,
+                "_ref_frequency": "NIST"
+            }
+        },
+        "6s8s": {
+            "3S1": {
+                "frequency": 1247587513136832.0,
+                "_ref_frequency": "NIST"
+            },
+            "1S0": {
+                "frequency": 1257326570927420.0,
+                "_ref_frequency": "NIST",
+                "hyper_A": 0,
+                "hyper_B": 0
+            }
+        },
+        "6p6p": {
+            "3P0": {
+                "frequency": 1272226555882478.0,
+                "_ref_frequency": "NIST",
+                "hyper_A": 0,
+                "hyper_B": 0
+            },
+            "3P1": {
+                "frequency": 1313253453552236.0,
+                "_ref_frequency": "Meggers-1977"
+            },
+            "3P2": {
+                "frequency": 1341882134328946.0,
+                "_ref_frequency": "NIST"
+            }
+        },
+        "6s7d": {
+            "3D1": {
+                "frequency": 1328421752757204.0,
+                "_ref_frequency": "Meggers-1977"
+            },
+            "3D2": {
+                "frequency": 1328471818097690.0,
+                "_ref_frequency": "Meggers-1977"
+            }
+        },
+        "6s8p": {
+            "1P1": {
+                "frequency": 1319614449926080.0,
+                "_ref_frequency": "Bowers-1996"
+            }
+        }
+    }
+}
