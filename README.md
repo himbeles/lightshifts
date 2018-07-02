@@ -123,4 +123,41 @@ are provided in the form of two json files:
     ]
     ````
 
-An example for how the state and transition files were generated for ytterbium-173 can be found in [```examples/example_transition_collection_yb173.ipynb```](examples/example_transition_collection_yb173.ipynb).
+## Estimate branching ratios
+
+The reduced dipole matrix element can be calculated from a measured transition rate between two LS coupling states. However, sometimes only the lifetime of a state is known experimentally and not the branching ratios into energetically lower lying states. 
+The method  ```lightshift_solver```  of the class ```lightshifts.auxiliary.atom``` can help by estimating the ratio of dipole matrix elements between a selection of states, using the parity selection rule for the electron configuration and angular momentum selection.
+
+First, import a dictionary of atomic states and their energies (same as the atomic states file above).
+
+```python
+from lightshifts.auxiliary import atom
+yb = atom.from_json('atom_yb173.json')
+```
+
+Then, calculate all branching ratios of an initial state state_i into all energetically lower lying states in the imported state library:
+
+```python
+state_i = ('6s5d','3D1')
+yb.branching_ratios_LS_dict(state_i, verbose=True)
+
+# Out[]:
+#    branching ratio into  ('6s6p', '3P0') = 0.6387527684341578
+#    branching ratio into  ('6s6p', '3P1') = 0.3519121426242965
+#    branching ratio into  ('6s6p', '3P2') = 0.009335088941545725
+#
+#    {('6s6s', '1S0'): 0.0,
+#     ('6s6p', '3P0'): 0.6387527684341578,
+#     ('6s6p', '3P1'): 0.3519121426242965,
+#     ('6s6p', '3P2'): 0.009335088941545725}
+```
+
+or, calculate the branching into one single final state only: 
+
+```python
+state_i = ('6s5d','3D1')
+state_f = ('6s6p','3P0')
+yb.branching_ratio_LS(state_i, state_f)
+
+# Out[]: 0.6387527684341578
+```
