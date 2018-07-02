@@ -1,3 +1,6 @@
+[![pipeline status](https://gitlab.physik.uni-muenchen.de/Luis.Riegger/lightshifts/badges/master/pipeline.svg)](https://gitlab.physik.uni-muenchen.de/Luis.Riegger/lightshifts/commits/master)
+[![coverage report](https://gitlab.physik.uni-muenchen.de/Luis.Riegger/lightshifts/badges/master/coverage.svg)](https://gitlab.physik.uni-muenchen.de/Luis.Riegger/lightshifts/commits/master)
+
 # lightshifts
 
 Calculate dynamical scalar, vector and tensor light shifts for atomic states
