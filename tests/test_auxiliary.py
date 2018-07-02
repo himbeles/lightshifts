@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from lightshifts.auxiliary import atom, smart_gen_array, laser_intensity
+from lightshifts.auxiliary import atom, smart_gen_array, laser_intensity, frequency_from_wavenumber
 
 
 def test_branching_ratio_LS(atom_file):
@@ -18,3 +18,8 @@ def test_smart_gen_array():
 def test_laser_intensity():
     li = laser_intensity(1, 1e-2)
     assert li == pytest.approx(2/np.pi)
+
+def test_frequency_from_wavenumber():
+    f = frequency_from_wavenumber(1)
+    print(f)
+    assert f == pytest.approx(29979245800)
