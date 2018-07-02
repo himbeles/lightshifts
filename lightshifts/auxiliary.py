@@ -222,13 +222,17 @@ class atom():
         """
         get electron configuration parity for two electron system
         used for selection rule for calculating branching ratio.
-
-        TODO: this only works for two electron systems now, extend to one
         """
+        def one_electron_parity(t):
+            if (t in ('s','d','g')):
+                return 1
+            elif (t in ('p','f')):
+                return -1
+            else: return '?'
         try:
-            parity1 = 1 if (state[0][1] in ('s','d')) else -1
-            parity2 = 1 if (state[0][3] in ('s','d')) else -1
-            return parity1*parity2
+            orbitals = [s for s in state[0]][1::2]
+            parities = [one_electron_parity(o) for o in orbitals]
+            return np.product(parities)
         except:
             return '?'
 
