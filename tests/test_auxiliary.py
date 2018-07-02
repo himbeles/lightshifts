@@ -1,5 +1,6 @@
 import pytest
-from lightshifts.auxiliary import atom
+import numpy as np
+from lightshifts.auxiliary import atom, smart_gen_array, laser_intensity
 
 
 def test_branching_ratio_LS(atom_file):
@@ -8,3 +9,12 @@ def test_branching_ratio_LS(atom_file):
     state_f = ('6s6p','3P2')
     br = yb.branching_ratio_LS(state_i, state_f)
     assert pytest.approx(0.49202592529614686)==float(br)
+
+def test_smart_gen_array():
+    xx, yy = smart_gen_array(lambda x: x, 1, 2, sing=[1.5], n=5, eps=1e-2)
+    print(xx,yy)
+    assert (len(xx)==12)
+
+def test_laser_intensity():
+    li = laser_intensity(1, 1e-2)
+    assert li == pytest.approx(2/np.pi)
