@@ -71,6 +71,18 @@ def laser_intensity(laser_power, beam_waist):
     """
     return 2/np.pi * laser_power/(beam_waist/1e-2)**2
 
+def _tex_state(state, F=None):
+    term, config = state
+    if F is None:
+        Fstr = ""
+    else:
+        if (F*2)%2==0:
+            Fstr = " (F=%d)"%F
+        else:
+            Fstr = " (F=%d/2)"%(F*2)
+    return r"(%s)${}^{%s}\mathrm{%s}_{%s}$"%(term, config[0], config[1],
+            config[2])+Fstr
+
 
 def plot_total_lightshift_around_hyperfine_state(atom_filename, transitions_filename,
                                        state_f, Ff, q,
@@ -120,11 +132,12 @@ def plot_total_lightshift_around_hyperfine_state(atom_filename, transitions_file
 
     plt.gca().axhline(y=0, color='k', lw=0.5)
     plt.xlim(-df_min/1e9,df_max/1e9)
-    plt.xlabel(r'detuning from $%s \rightarrow %s\,(F=%1.0f/2)$ (GHz)'%(ls.state_i[1],
-                                                                        state_f[1],
-                                                                        2*Ff))
+    plt.xlabel(r'detuning from %s $\rightarrow$ %s (GHz)'%(_tex_state(ls.state_i),
+                                                           _tex_state(state_f,
+                                                               Ff)))
+
     plt.ylabel(r'$\Delta V_\mathrm{ac}/I_0$ [Hz/($W/\mathrm{cm}^2$)]')
-    plt.legend(loc='upper left', title='$m_F$', frameon=False)
+    plt.legend(loc='upper left', title=leg_title[q], frameon=False)
     plt.title(title[q])
 
 
