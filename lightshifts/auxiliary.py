@@ -71,7 +71,7 @@ def laser_intensity(laser_power, beam_waist):
     """
     return 2/np.pi * laser_power/(beam_waist/1e-2)**2
 
-def _tex_state(state, F=None):
+def _tex_state(state, F=None, show_term=True):
     term, config = state
     if F is None:
         Fstr = ""
@@ -80,7 +80,12 @@ def _tex_state(state, F=None):
             Fstr = " (F=%d)"%F
         else:
             Fstr = " (F=%d/2)"%(F*2)
-    return r"(%s)${}^{%s}\mathrm{%s}_{%s}$"%(term, config[0], config[1],
+
+    if show_term:
+        term_str = '(%s)'%term
+    else:
+        term_str = ''
+    return term_str+r"${}^{%s}\mathrm{%s}_{%s}$"%(config[0], config[1],
             config[2])+Fstr
 
 
