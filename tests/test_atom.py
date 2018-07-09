@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from lightshifts.atom as atom
+import lightshifts.atom as atom
 
 
 def test_branching_ratio_LS(atom_file):
