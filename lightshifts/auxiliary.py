@@ -1,5 +1,5 @@
 import numpy as np
-import lightshifts.lightshift_solver as ls_solver
+import lightshifts.atom as atom
 from lightshifts.consts import c
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -71,6 +71,12 @@ def laser_intensity(laser_power, beam_waist):
 
 def _tex_state(state, F=None, show_term=True):
     term, config = state
+    try:
+        par = atom.parity(state)
+        if par=='?':
+            return '%s %s'%(term,config)
+    except:
+        pass
     if F is None:
         Fstr = ""
     else:
@@ -87,9 +93,12 @@ def _tex_state(state, F=None, show_term=True):
             config[2])+Fstr
 
 
+
 def plot_total_lightshift_around_hyperfine_state(atom_filename, transitions_filename,
                                        state_f, Ff, q,
                                        Fi=None, df_min=10e9, df_max=10e9, n=200):
+
+    import lightshifts.lightshift_solver as ls_solver
 
     # make the plot data
     ls = ls_solver(atom_filename, transitions_filename, Fi=Fi)
@@ -146,6 +155,8 @@ def plot_total_lightshift_around_hyperfine_state(atom_filename, transitions_file
 
 def plot_scalar_lightshift(atom_filename, transitions_filename,
               lam_min=200e-9, lam_max=1500e-9, n=200):
+
+    import lightshifts.lightshift_solver as ls_solver
 
     # make the plot data
     ls = ls_solver(atom_filename, transitions_filename)

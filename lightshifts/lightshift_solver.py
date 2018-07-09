@@ -1,8 +1,10 @@
 import numpy as np
+import pandas as pd
 import json
 from .consts import eps0, hbar, h, c
 from sympy.physics.wigner import wigner_6j
 from .atom import atom
+from .auxiliary import _tex_state
 
 
 class lightshift_solver():
@@ -101,19 +103,21 @@ class lightshift_solver():
         else:
             for t in self.transitions:
                     state_f = t['state_f']
-                    br =  self.atom.branching_ratio_LS(tuple(state_f),
-                            tuple(self.state_i))
+                    state_i = self.state_i
+                    states = sorted([state_i, state_f], key=self.frequency)
+                    state_l = states[0]
+                    state_u = states[1]
+                    br =  self.atom.branching_ratio_LS(tuple(state_u),tuple(state_l))
                     if np.isnan(br):
-                        lt_f = np.nan
+                        lt_f = 1/t['Gamma']
                     else:
                         lt_f =  1/(t['Gamma'] / br)
-
 
                     d.append({
                         'state_i': self.state_i,
                         'state_f': state_f,
                         'frequency': self.transition_frequency(state_f),
-                        '_ref_frequency': self._query_state_prop(state_f,
+                        '_ref_frequency': self._query_state_prop(state_u,
                             '_ref_frequency'),
                         'wavenumber': self.transition_frequency(state_f)/c/100,
                         'Gamma': t['Gamma'],
@@ -125,6 +129,24 @@ class lightshift_solver():
         for s in sd:
             s['wavelength'] = c/s['frequency']
         return sd
+
+    def pretty_transition_table(self, latex=False):
+        sorted_transitions_dict = self.sorted_transitions_dict()
+        trans = pd.DataFrame(sorted_transitions_dict)
+        trans[r'final state']=trans['state_f'].apply(_tex_state)
+        trans[r'$\lambda$ (nm)'] = trans['wavelength'].apply(lambda x: '{:1.3f}'.format(x*1e9))
+        trans[r'k (1/cm)'] = trans['wavenumber'].apply(lambda x: '{:1.2f}'.format(x))
+        trans[r'$\Gamma$ (MHz)'] = trans['Gamma'].apply(lambda x: '{:1.2f}'.format(x/1e6))
+        trans[r'$\tau_f$ (ns)'] = trans['lifetime_f'].apply(lambda x: '{:1.3f}'.format(x*1e9))
+        trans['br.r. (LS)'] = trans['branching_ratio_LS'].apply(\
+                lambda x: 'n/a' if np.isnan(x) else '{:1.4f}'.format(x))
+        trans[r'ref. ($\tau_f$, $\Gamma$)'] = trans['_ref_Gamma'].apply(lambda x: '{:s}'.format(x))
+        trans_export = trans[['final state', r'$\lambda$ (nm)', 'k (1/cm)', r'$\tau_f$ (ns)',
+                              'br.r. (LS)', r'$\Gamma$ (MHz)', r'ref. ($\tau_f$, $\Gamma$)']]
+
+        if latex: return trans_export.to_latex(index=False, escape=False,
+                float_format=True, na_rep='n/a', column_format='lrrrrrl')
+        else: return trans_export
 
     def _reduced_mat_el_sqd(self, Fi, Ff, Ji, Jf, omega_Jf_Ji, Gamma):
         x = Gamma*3*np.pi*eps0*hbar*c**3/(abs(omega_Jf_Ji)**3)

@@ -80,6 +80,8 @@ class atom():
         try:
             orbitals = [s for s in state[0]][1::2]
             parities = [one_electron_parity(o) for o in orbitals]
+            if len(orbitals)==0:
+                return '?'
             return np.product(parities)
         except:
             return '?'
