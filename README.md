@@ -129,12 +129,12 @@ are provided in the form of two json files:
 ## Estimate branching ratios
 
 The reduced dipole matrix element can be calculated from a measured transition rate between two LS coupling states. However, sometimes only the lifetime of a state is known experimentally and not the branching ratios into energetically lower lying states. 
-The method  ```branching_ratio_LS```  of the class ```lightshifts.auxiliary.atom``` can help by estimating the ratio of dipole matrix elements between a selection of states, using the parity selection rule for the electron configuration and angular momentum selection.
+The method  ```branching_ratio_LS```  of the class ```lightshifts.atom``` can help by estimating the ratio of dipole matrix elements between a selection of states, using the parity selection rule for the electron configuration and angular momentum selection.
 
 First, import a dictionary of atomic states and their energies (same as the atomic states file above).
 
 ```python
-from lightshifts.auxiliary import atom
+import lightshifts.atom as atom
 yb = atom.from_json('atom_yb173.json')
 ```
 

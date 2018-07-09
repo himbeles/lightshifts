@@ -2,6 +2,7 @@ import numpy as np
 import json
 from .consts import eps0, hbar, h, c
 from sympy.physics.wigner import wigner_6j
+from .atom import atom
 
 
 class lightshift_solver():
@@ -21,8 +22,8 @@ class lightshift_solver():
             lightshift_solver: obect wrapping lightshift solver methods
         """
         self.atom, self.transitions = self._import_states_and_transitions(atom_filename, transitions_filename)
-        self.states = self.atom['states']
-        self.I = self.atom['I']
+        self.states = self.atom.states
+        self.I = self.atom.I
         if Fi is None:
             self.Fi = self.I
         else:
@@ -31,15 +32,15 @@ class lightshift_solver():
 
     def _import_states_and_transitions(self, atom_filename, transitions_filename):
         try:
-            atom = self._import_json(atom_filename)
-        except:
-            raise Exception('Atom file not found or not in json format.')
+            a = atom.from_json(atom_filename)
+        except Exception as e:
+            raise Exception('Atom file not found or not in json format.', e)
         try:
-            transitions = self._import_json(transitions_filename)
+            t = self._import_json(transitions_filename)
         except:
             raise Exception('Transitions file not found or not in json format.')
 
-        return atom, transitions
+        return a, t
 
     @staticmethod
     def _import_json(fn):
@@ -63,7 +64,7 @@ class lightshift_solver():
         return prop in self.states[configuration][term]
 
     def final_states(self):
-        return [s['state_f'] for s in self.transitions]
+        return [t['state_f'] for t in self.transitions]
 
     def frequency(self, state):
         return self._query_state_prop(state, 'frequency')
@@ -98,10 +99,28 @@ class lightshift_solver():
                         'F': F,
                         'frequency': self.transition_frequency_hyperfine(s,F)})
         else:
-            for s in self.final_states():
+            for t in self.transitions:
+                    state_f = t['state_f']
+                    br =  self.atom.branching_ratio_LS(tuple(state_f),
+                            tuple(self.state_i))
+                    if np.isnan(br):
+                        lt_f = np.nan
+                    else:
+                        lt_f =  1/(t['Gamma'] / br)
+
+
                     d.append({
-                        'state':s,
-                        'frequency': self.transition_frequency(s)})
+                        'state_i': self.state_i,
+                        'state_f': state_f,
+                        'frequency': self.transition_frequency(state_f),
+                        '_ref_frequency': self._query_state_prop(state_f,
+                            '_ref_frequency'),
+                        'wavenumber': self.transition_frequency(state_f)/c/100,
+                        'Gamma': t['Gamma'],
+                        '_ref_Gamma': t['_ref_Gamma'],
+                        'branching_ratio_LS': br,
+                        'lifetime_f': lt_f
+                        })
         sd = sorted(d, key=lambda x: x['frequency'])
         for s in sd:
             s['wavelength'] = c/s['frequency']
