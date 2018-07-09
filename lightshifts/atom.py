@@ -137,11 +137,14 @@ class atom():
             omega = self.transition_omega(state_i, f)
             try:
                 M = self._dipole_coeff(state_i, f, parity_selection=parity_selection)
-                ratios[j] = (omega**3 * M**2)
+                ratios[j] = np.abs(omega**3 * M**2)
             except:
                 pass
 
-        branching_ratios = ratios/np.sum(ratios)
+        if np.sum(ratios)==0:
+            branching_ratios = np.array([np.nan for r in ratios])
+        else:
+            branching_ratios = ratios/np.sum(ratios)
         if verbose:
             for j, f in enumerate(fs):
                 b = branching_ratios[j]
