@@ -148,12 +148,20 @@ class lightshift_solver():
                 float_format=True, na_rep='n/a', column_format='lrrrrrl')
         else: return trans_export
 
-    def _reduced_mat_el_sqd(self, Fi, Ff, Ji, Jf, omega_Jf_Ji, Gamma):
-        x = Gamma*3*np.pi*eps0*hbar*c**3/(abs(omega_Jf_Ji)**3)
-        y = (2*Jf+1) * (2*Ff+1)
-        z = (wigner_6j(Ji, Jf, 1, Ff, Fi, self.I))**2
+    @classmethod
+    def reduced_mat_el_sqd(cls, I, Fi, Ff, Ji, Jf, omega_Jf_Ji, Gamma):
+        if omega_Jf_Ji > 0:
+            Je = Jf
+            Jg = Ji
+        else:
+            Je = Ji
+            Jg = Jf
+        orbital_mat_el_sqd = Gamma*3*np.pi*eps0*hbar*c**3/(abs(omega_Jf_Ji)**3)\
+                             *(2*Je+1)/(2*Jg+1)
+        y = (2*Ji+1) * (2*Ff+1)
+        z = (wigner_6j(Ji, Jf, 1, Ff, Fi, I))**2
 
-        return x*y*z
+        return orbital_mat_el_sqd*y*z
 
     def _J_from_state(self, state):
         config, term = state
@@ -188,7 +196,7 @@ class lightshift_solver():
             Gamma = trans['Gamma']
 
             for Ff in self._calc_Fs(Jf):
-                a = 2*omega_Ff_Fi*self._reduced_mat_el_sqd(self.Fi, Ff, Ji, Jf,
+                a = 2*omega_Ff_Fi*self.reduced_mat_el_sqd(self.I, self.Fi, Ff, Ji, Jf,
                                                            omega_Ff_Fi, Gamma)
                 b = 3*hbar*(omega_Ff_Fi**2 - omega**2)
 
@@ -267,7 +275,7 @@ class lightshift_solver():
 
             for Ff in self._calc_Fs(Jf):
                 omega_Ff_Fi = 2*np.pi*self.transition_frequency_hyperfine(state_f, Ff)
-                matel = self._reduced_mat_el_sqd(self.Fi, Ff, Ji, Jf,
+                matel = self.reduced_mat_el_sqd(self.I, self.Fi, Ff, Ji, Jf,
                                                  omega_Ff_Fi, Gamma)
                 f = omega_Ff_Fi*matel/(hbar*(omega_Ff_Fi**2 - omega**2))
 
