@@ -149,19 +149,31 @@ class lightshift_solver():
         else: return trans_export
 
     @classmethod
-    def reduced_mat_el_sqd(cls, I, Fi, Ff, Ji, Jf, omega_Jf_Ji, Gamma):
+    def orbital_reduced_mat_el_sqd(cls, Ji, Jf, omega_Jf_Ji, Gamma):
+        # Steck 7.242, gamma must be decay rate from higher to lower state,
+        # omega is omega_f - omega_i
         if omega_Jf_Ji > 0:
+            # initial state is lower in energy
             Je = Jf
             Jg = Ji
+            conj_ratio = 1
         else:
+            # initial state is higher in energy
             Je = Ji
             Jg = Jf
-        orbital_mat_el_sqd = Gamma*3*np.pi*eps0*hbar*c**3/(abs(omega_Jf_Ji)**3)\
+            conj_ratio = (2*Jg+1)/(2*Je+1) # see Steck 7.250
+
+        oma_eg = Gamma*3*np.pi*eps0*hbar*c**3/(abs(omega_Jf_Ji)**3)\
                              *(2*Je+1)/(2*Jg+1)
+
+        return oma_eg * conj_ratio
+
+    @classmethod
+    def reduced_mat_el_sqd(cls, I, Fi, Ff, Ji, Jf, omega_Jf_Ji, Gamma):
+        oma = cls.orbital_reduced_mat_el_sqd(Ji, Jf, omega_Jf_Ji, Gamma)
         y = (2*Ji+1) * (2*Ff+1)
         z = (wigner_6j(Ji, Jf, 1, Ff, Fi, I))**2
-
-        return orbital_mat_el_sqd*y*z
+        return oma * y * z
 
     def _J_from_state(self, state):
         config, term = state
