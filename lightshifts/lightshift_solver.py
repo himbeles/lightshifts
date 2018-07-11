@@ -149,7 +149,7 @@ class lightshift_solver():
         else: return trans_export
 
     @classmethod
-    def orbital_reduced_mat_el_sqd(cls, Ji, Jf, omega_Jf_Ji, Gamma):
+    def finestruct_reduced_mat_el_sqd(cls, Ji, Jf, omega_Jf_Ji, Gamma):
         # reduced fine structure dipole element <Ji |d| Jf>
         # Steck 7.242, 7.296, gamma must be decay rate from higher to lower state,
         # omega is omega_f - omega_i
@@ -164,17 +164,17 @@ class lightshift_solver():
             Jg = Jf
             conj_ratio = (2*Jg+1)/(2*Je+1) # see Steck 7.250, conj. red. mat. el.
 
-        oma_eg = Gamma*3*np.pi*eps0*hbar*c**3/(abs(omega_Jf_Ji)**3)\
+        fma_eg = Gamma*3*np.pi*eps0*hbar*c**3/(abs(omega_Jf_Ji)**3)\
                              *(2*Je+1)/(2*Jg+1)
 
-        return oma_eg * conj_ratio
+        return fma_eg * conj_ratio
 
     @classmethod
-    def reduced_mat_el_sqd(cls, I, Fi, Ff, Ji, Jf, omega_Jf_Ji, Gamma):
-        oma = cls.orbital_reduced_mat_el_sqd(Ji, Jf, omega_Jf_Ji, Gamma)
+    def hyperfine_reduced_mat_el_sqd(cls, I, Fi, Ff, Ji, Jf, omega_Jf_Ji, Gamma):
+        fma = cls.finestruct_reduced_mat_el_sqd(Ji, Jf, omega_Jf_Ji, Gamma)
         y = (2*Ji+1) * (2*Ff+1)
         z = (wigner_6j(Ji, Jf, 1, Ff, Fi, I))**2
-        return oma * y * z
+        return fma * y * z
 
     def _J_from_state(self, state):
         config, term = state
@@ -209,7 +209,7 @@ class lightshift_solver():
             Gamma = trans['Gamma']
 
             for Ff in self._calc_Fs(Jf):
-                a = 2*omega_Ff_Fi*self.reduced_mat_el_sqd(self.I, self.Fi, Ff, Ji, Jf,
+                a = 2*omega_Ff_Fi*self.hyperfine_reduced_mat_el_sqd(self.I, self.Fi, Ff, Ji, Jf,
                                                            omega_Ff_Fi, Gamma)
                 b = 3*hbar*(omega_Ff_Fi**2 - omega**2)
 
@@ -288,7 +288,7 @@ class lightshift_solver():
 
             for Ff in self._calc_Fs(Jf):
                 omega_Ff_Fi = 2*np.pi*self.transition_frequency_hyperfine(state_f, Ff)
-                matel = self.reduced_mat_el_sqd(self.I, self.Fi, Ff, Ji, Jf,
+                matel = self.hyperfine_reduced_mat_el_sqd(self.I, self.Fi, Ff, Ji, Jf,
                                                  omega_Ff_Fi, Gamma)
                 f = omega_Ff_Fi*matel/(hbar*(omega_Ff_Fi**2 - omega**2))
 
