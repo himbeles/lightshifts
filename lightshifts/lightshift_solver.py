@@ -150,7 +150,8 @@ class lightshift_solver():
 
     @classmethod
     def orbital_reduced_mat_el_sqd(cls, Ji, Jf, omega_Jf_Ji, Gamma):
-        # Steck 7.242, gamma must be decay rate from higher to lower state,
+        # reduced fine structure dipole element <Ji |d| Jf>
+        # Steck 7.242, 7.296, gamma must be decay rate from higher to lower state,
         # omega is omega_f - omega_i
         if omega_Jf_Ji > 0:
             # initial state is lower in energy
@@ -161,7 +162,7 @@ class lightshift_solver():
             # initial state is higher in energy
             Je = Ji
             Jg = Jf
-            conj_ratio = (2*Jg+1)/(2*Je+1) # see Steck 7.250
+            conj_ratio = (2*Jg+1)/(2*Je+1) # see Steck 7.250, conj. red. mat. el.
 
         oma_eg = Gamma*3*np.pi*eps0*hbar*c**3/(abs(omega_Jf_Ji)**3)\
                              *(2*Je+1)/(2*Jg+1)
