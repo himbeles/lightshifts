@@ -18,7 +18,7 @@ are provided in the form of json files.
 Install the module using
 
 ```bash
-pip install git+https://gitlab.physik.uni-muenchen.de/Luis.Riegger/lightshifts.git
+pip install git+https://github.com/himbeles/lightshifts.git
 ```
 
 ## Usage of ```lightshifts.lightshift_solver```
