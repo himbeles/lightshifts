@@ -19,6 +19,7 @@ class lightshift_solver():
         Arguments:
             atom_filename (str): path to atom states json file
             transitions_filename (str): path to transitions json file
+            Fi (float): quantum number F of intitial state (default F=I if None)
 
         Returns:
             lightshift_solver: obect wrapping lightshift solver methods
