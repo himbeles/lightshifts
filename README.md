@@ -15,10 +15,16 @@ are provided in the form of json files.
 
 ## Installation
 
-Install the module using
+Install the module from github using
 
 ```bash
 pip install git+https://github.com/himbeles/lightshifts.git
+```
+
+or from PyPI
+
+```bash
+pip install lightshifts
 ```
 
 ## Usage of ```lightshifts.lightshift_solver```
