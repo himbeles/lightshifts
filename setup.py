@@ -34,6 +34,7 @@ setup(
 
     description='Calculate dynamical scalar, vector and tensor light shifts.',
     long_description=long_description,
+    long_description_content_type='text/markdown',
 
     # The project's main homepage.
     url='https://gitlab.physik.uni-muenchen.de/software/lightshifts',
