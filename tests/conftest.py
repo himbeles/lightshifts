@@ -12,10 +12,10 @@ def fixtures_path():
 
 
 @fixture
-def atom_file():
-    return os.path.join(fixtures_path(), 'atom_yb173.json')
+def atom_file(fixtures_path):
+    return os.path.join(fixtures_path, 'atom_yb173.json')
 
 
 @fixture
-def trans_file():
-    return os.path.join(fixtures_path(), 'transitions_1S0.json')
+def trans_file(fixtures_path):
+    return os.path.join(fixtures_path, 'transitions_1S0.json')
