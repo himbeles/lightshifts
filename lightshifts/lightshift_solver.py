@@ -174,7 +174,7 @@ class lightshift_solver():
     def hyperfine_reduced_mat_el_sqd(cls, I, Fi, Ff, Ji, Jf, omega_Jf_Ji, Gamma):
         fma = cls.finestruct_reduced_mat_el_sqd(Ji, Jf, omega_Jf_Ji, Gamma)
         y = (2*Ji+1) * (2*Ff+1)
-        z = (wigner_6j(Ji, Jf, 1, Ff, Fi, I))**2
+        z = (float(wigner_6j(float(Ji), float(Jf), 1, float(Ff), float(Fi), float(I))))**2
         return fma * y * z
 
     def _J_from_state(self, state):
@@ -295,9 +295,9 @@ class lightshift_solver():
 
                 p0 += 2/3 * f
                 p1 += (-1)**(Fi+Ff+1) * np.sqrt(6*Fi*(2*Fi+1)/(Fi+1))\
-                      * np.float(wigner_6j(1,1,1,Fi,Fi,Ff)) * f
+                      * float(wigner_6j(1,1,1,float(Fi),float(Fi),float(Ff))) * f*(omega/omega_Ff_Fi)
                 p2 += (-1)**(Fi+Ff) * np.sqrt(40*Fi*(2*Fi+1)*(2*Fi-1)/(3*(Fi+1)*(2*Fi+3)))\
-                      * np.float(wigner_6j(1,1,2,Fi,Fi,Ff)) * f
+                      * float(wigner_6j(1,1,2,float(Fi),float(Fi),float(Ff))) * f
 
         return p0,p1,p2
 
@@ -325,8 +325,15 @@ class lightshift_solver():
 
         # scalar light shift
         l0 = -p0*E02
-        l1 = -p1*mFi/Fi*(1)*q*E02
-        l2 = -p2*(3*mFi**2-Fi*(Fi+1))/(Fi*(2*Fi-1))*(3*(1-np.abs(q))*E02-E02)/2
+        if Fi > 0:
+            l1 = -p1*mFi/Fi*(1)*q*E02
+        else:
+            l1 = 0
+        if Fi > 1/2:
+            l2 = -p2*(3*mFi**2-Fi*(Fi+1))/(Fi*(2*Fi-1))*(3*(1-np.abs(q))*E02-E02)/2
+        else:
+            l2 = 0
+            
 
         return l0,l1,l2
 
