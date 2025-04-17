@@ -1,6 +1,6 @@
-
-
 # lightshifts
+
+<img src="misc/icon.png" alt="Project Icon" width="64" height="64">
 
 Calculate dynamical scalar, vector and tensor light shifts for atomic states
 in the presence of hyperfine coupling.
