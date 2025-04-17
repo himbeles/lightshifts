@@ -44,10 +44,10 @@ This is a basic example to calculate the scalar dynamic light shift induced in t
 
 ```python
 # Import the module using 
-import lightshifts.lightshift_solver as ls_solver
+from lightshifts import LightshiftSolver
 
 # Load the atomic state properties file and the transitions file
-ls = ls_solver('examples/atom_yb173.json', 'examples/transitions_1S0.json')
+ls = LightshiftSolver('examples/atom_yb173.json', 'examples/transitions_1S0.json')
 
 # Calculate the scalar lightshift in Hz
 ls.scalar_lightshift(lam=670e-9, laser_intensity=100)
@@ -146,13 +146,13 @@ are provided in the form of two json files:
 ## Estimate branching ratios
 
 The reduced dipole matrix element can be calculated from a measured transition rate between two LS coupling states. However, sometimes only the lifetime of a state is known experimentally and not the branching ratios into energetically lower lying states. 
-The method  ```branching_ratio_LS```  of the class ```lightshifts.atom``` can help by estimating the ratio of dipole matrix elements between a selection of states, using the parity selection rule for the electron configuration and angular momentum selection.
+The method  ```branching_ratio_LS```  of the class ```lightshifts.Atom``` can help by estimating the ratio of dipole matrix elements between a selection of states, using the parity selection rule for the electron configuration and angular momentum selection.
 
 First, import a dictionary of atomic states and their energies (same as the atomic states file above).
 
 ```python
-import lightshifts.atom as atom
-yb = atom.from_json('atom_yb173.json')
+from lightshifts import Atom
+yb = Atom.from_json('atom_yb173.json')
 ```
 
 Then, calculate all branching ratios of an initial state state_i into all energetically lower lying states in the imported state library:
