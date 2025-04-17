@@ -1,2 +1,2 @@
-from .lightshift_solver import lightshift_solver
-from .atom import atom
+from .lightshift_solver import LightshiftSolver
+from .atom import Atom

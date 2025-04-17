@@ -3,11 +3,11 @@ import pandas as pd
 import json
 from .consts import eps0, hbar, h, c
 from sympy.physics.wigner import wigner_6j
-from .atom import atom
+from .atom import Atom
 from .auxiliary import _tex_state
 
 
-class lightshift_solver():
+class LightshiftSolver():
     def __init__(self, atom_filename, transitions_filename, Fi=None):
         """
         Calculate dynamical scalar, vector and tensor light shifts
@@ -35,7 +35,7 @@ class lightshift_solver():
 
     def _import_states_and_transitions(self, atom_filename, transitions_filename):
         try:
-            a = atom.from_json(atom_filename)
+            a = Atom.from_json(atom_filename)
         except Exception as e:
             raise Exception('Atom file not found or not in json format.', e)
         try:
