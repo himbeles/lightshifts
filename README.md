@@ -1,3 +1,5 @@
+[![Tests](https://github.com/himbeles/lightshifts/actions/workflows/tests.yml/badge.svg)](https://github.com/himbeles/lightshifts/actions/workflows/tests.yml)
+
 # lightshifts
 
 <img src="misc/icon.png" alt="Project Icon" width="64" height="64">
