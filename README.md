@@ -10,8 +10,11 @@ in the presence of hyperfine coupling.
 The module ```lightshifts.lightshift_solver``` solves for the scalar, 
 vector and tensor light shifts induced by atomic dipole transitions.
 
+The underlying analytical expressions for the dynamical polarizability are as in 
+*D. A. Steck, "Quantum and Atom Optics," available online at [http://steck.us/teaching](http://steck.us/teaching) (revision 0.16.2, 15 November 2024), and independent derivation in [arXiv:1211.2673](https://arxiv.org/abs/1211.2673).*
+
 State energies, hyperfine coupling coefficients and atomic transition properties
-are provided in the form of json files.
+can be provided as input json files.
 
 
 ## Installation
