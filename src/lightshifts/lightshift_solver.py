@@ -145,9 +145,11 @@ class LightshiftSolver():
         trans_export = trans[['final state', r'$\lambda$ (nm)', 'k (1/cm)', r'$\tau_f$ (ns)',
                               'br.r. (LS)', r'$\Gamma$ (MHz)', r'ref. ($\tau_f$, $\Gamma$)']]
 
-        if latex: return trans_export.to_latex(index=False, escape=False,
+        if latex: 
+            return trans_export.to_latex(index=False, escape=False,
                 float_format=True, na_rep='n/a', column_format='lrrrrrl')
-        else: return trans_export
+        else: 
+            return trans_export
 
     @classmethod
     def finestruct_reduced_mat_el_sqd(cls, Ji, Jf, omega_Jf_Ji, Gamma):
@@ -202,7 +204,7 @@ class LightshiftSolver():
         """
         omega = 2*np.pi*c/lam
 
-        p = 0
+        p = 0.
         for trans in self.transitions:
             Ji = self._J_from_state(trans['state_i'])
             Jf = self._J_from_state(trans['state_f'])
@@ -224,8 +226,8 @@ class LightshiftSolver():
         """
         laser_intensity_unit = 1/(0.01)**2  # normalization Watt/cm^2
         p = self.scalar_polarizability(lam)
-        l = -p/(2*eps0*c)/h*laser_intensity_unit*laser_intensity
-        return l
+        ls = -p/(2*eps0*c)/h*laser_intensity_unit*laser_intensity
+        return ls
 
     @staticmethod
     def _hyperfine_shift(F, I, J, hyper_A, hyper_B):

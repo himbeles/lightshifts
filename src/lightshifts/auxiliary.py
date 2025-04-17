@@ -1,9 +1,10 @@
-import numpy as np
-import lightshifts.atom as atom
-from lightshifts.consts import c
-import matplotlib.pyplot as plt
 import matplotlib as mpl
 import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+import numpy as np
+
+from lightshifts import Atom
+from lightshifts.consts import c
 
 
 def smart_gen_array(func, a, b, sing=[], n=100, eps=1e-17):
@@ -72,7 +73,7 @@ def laser_intensity(laser_power, beam_waist):
 def _tex_state(state, F=None, show_term=True):
     term, config = state
     try:
-        par = atom.parity(state)
+        par = Atom.parity(state)
         if par=='?':
             return '%s %s'%(term,config)
     except:
@@ -97,11 +98,11 @@ def _tex_state(state, F=None, show_term=True):
 def plot_total_lightshift_around_hyperfine_state(atom_filename, transitions_filename,
                                        state_f, Ff, q,
                                        Fi=None, df_min=10e9, df_max=10e9, n=200):
-
-    import lightshifts.lightshift_solver as ls_solver
+    
+    from lightshifts import LightshiftSolver
 
     # make the plot data
-    ls = ls_solver(atom_filename, transitions_filename, Fi=Fi)
+    ls = LightshiftSolver(atom_filename, transitions_filename, Fi=Fi)
     fzero = ls.transition_frequency_hyperfine(state_f=state_f, Ff=Ff)
     lam_0 = c/(fzero+df_max)
     lam_1 = c/(fzero-df_min)
@@ -156,10 +157,10 @@ def plot_total_lightshift_around_hyperfine_state(atom_filename, transitions_file
 def plot_scalar_lightshift(atom_filename, transitions_filename,
               lam_min=200e-9, lam_max=1500e-9, n=200):
 
-    import lightshifts.lightshift_solver as ls_solver
+    from lightshifts import LightshiftSolver
 
     # make the plot data
-    ls = ls_solver(atom_filename, transitions_filename)
+    ls = LightshiftSolver(atom_filename, transitions_filename)
     lam_0 = lam_min
     lam_1 = lam_max
     sing = [x['wavelength'] for x in ls.sorted_transitions_dict()]

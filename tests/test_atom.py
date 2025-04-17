@@ -1,4 +1,5 @@
 import pytest
+
 from lightshifts import Atom
 
 
