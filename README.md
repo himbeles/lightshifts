@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/himbeles/lightshifts.svg?branch=master)](https://travis-ci.org/himbeles/lightshifts)
 
 
 # lightshifts
@@ -15,17 +14,27 @@ are provided in the form of json files.
 
 ## Installation
 
-Install the module from github using
+Install from PyPI
 
-```bash
-pip install git+https://github.com/himbeles/lightshifts.git
-```
-
-or from PyPI
-
-```bash
+```sh
 pip install lightshifts
 ```
+
+## Development
+
+For package development, set up development environment with 
+
+```sh
+uv sync --dev
+```
+
+### Tests
+
+Run tests via 
+```sh
+uv run pytest 
+```
+
 
 ## Usage of ```lightshifts.lightshift_solver```
 

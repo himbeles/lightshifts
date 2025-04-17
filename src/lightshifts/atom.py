@@ -56,7 +56,8 @@ class atom():
         Sf, Lf, Jf = cls._parse_term_SLJ(state_f[1])
 
         if parity_selection:
-            if cls.parity(state_i) == cls.parity(state_f): return 0
+            if cls.parity(state_i) == cls.parity(state_f): 
+                return 0
         if S != Sf:
             return 0
         A = (-1)**(Jf + L + 1 + S)
@@ -76,13 +77,14 @@ class atom():
                 return 1
             elif (t in ('p','f')):
                 return -1
-            else: return '?'
+            else: 
+                return '?'
         try:
             orbitals = [s for s in state[0]][1::2]
             parities = [one_electron_parity(o) for o in orbitals]
             if len(orbitals)==0:
                 return '?'
-            return np.product(parities)
+            return np.prod(parities)
         except:
             return '?'
 
@@ -116,7 +118,7 @@ class atom():
     def branching_ratios_LS_dict(self, state_i, parity_selection=True, verbose=False):
         """
         Estimate branching ratios between LS coupling states. Gives branching
-        ration of an initial state state_i into all energetically lower lying states
+        ratio of an initial state state_i into all energetically lower lying states
         in the imported state library.
         Useful when only the lifetime of a state is known and
         not the decay rates into final states.
@@ -150,7 +152,8 @@ class atom():
         if verbose:
             for j, f in enumerate(fs):
                 b = branching_ratios[j]
-                if b>0: print('branching ratio into ', f, '=', b)
+                if b>0: 
+                    print('branching ratio into ', f, '=', b)
         return dict(zip(fs, branching_ratios))
 
     def branching_ratio_LS(self, state_i, state_f, parity_selection=True, verbose=False):

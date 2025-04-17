@@ -1,0 +1,37 @@
+# pyproject.toml
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+
+[project]
+name = "lightshifts"
+requires-python = ">=3.11"
+description = "Calculate dynamical scalar, vector and tensor light shifts."
+readme = "README.md"
+license-files = ["LICENSE"]
+authors = [
+    {name = "Luis Riegger"},
+    {email = "lri@me.com"}
+]
+keywords = ["physics", "cold atoms", "lightshift", "hyperfine", "coupling"]
+
+dynamic = ["version"]
+
+dependencies = [
+    "numpy>2.0",
+    "sympy>1.1",
+    "pandas>0.22",
+    "matplotlib",
+]
+
+[tool.setuptools_scm]
+
+[dependency-groups]
+dev = [
+    "pytest>=3.0.2",
+    "ipykernel",
+    "ruff>=0.11.2",
+]
+
+[project.urls]
+homepage = "https://github.com/himbeles/lightshifts"
+repository = "https://github.com/himbeles/lightshifts"
