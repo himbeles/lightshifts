@@ -1,10 +1,9 @@
 import numpy as np
 import json
-from .consts import eps0, hbar, h, c
 from sympy.physics.wigner import wigner_6j
 
 
-class atom():
+class Atom():
     def __init__(self, atom_dict):
         self.atom_dict = atom_dict
         self.states = self.atom_dict['states']
@@ -154,7 +153,7 @@ class atom():
                 b = branching_ratios[j]
                 if b>0: 
                     print('branching ratio into ', f, '=', b)
-        return dict(zip(fs, branching_ratios))
+        return {f:float(b) for (f,b) in zip(fs, branching_ratios)}
 
     def branching_ratio_LS(self, state_i, state_f, parity_selection=True, verbose=False):
         """
