@@ -30,6 +30,7 @@ dev = [
     "pytest>=3.0.2",
     "ipykernel",
     "ruff>=0.11.2",
+    "scipy>=1.15.2",
 ]
 
 [project.urls]
